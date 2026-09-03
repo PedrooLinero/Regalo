@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Para Alejandra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- START GATE -->
+  <div class="start-gate" id="startGate">
+    <p class="loader-name">Alejandra</p>
+    <div class="start-heart">
+      <svg viewBox="0 0 100 90">
+        <defs>
+          <linearGradient id="heartGradStart" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#B5502E"/>
+            <stop offset="100%" stop-color="#D9A441"/>
+          </linearGradient>
+        </defs>
+        <path d="M50 85 C20 60 2 40 2 22 C2 8 13 -1 26 3 C36 6 44 15 50 25 C56 15 64 6 74 3 C87 -1 98 8 98 22 C98 40 80 60 50 85 Z" fill="url(#heartGradStart)"/>
+      </svg>
+    </div>
+    <button class="start-btn" id="startBtn">Toca para abrir tu regalo</button>
+  </div>
+
+  <!-- MUSIC -->
+  <audio id="bgMusic" src="audio/eterno.mp3" preload="auto" loop></audio>
+
+  <!-- AMBIENT PARTICLES (behind everything) -->
+  <div class="ambient" id="ambient" aria-hidden="true"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <p class="loader-name">Alejandra</p>
+    <p class="loader-sub">Un poquito más&hellip;</p>
+    <div class="loader-heart">
+      <svg viewBox="0 0 100 90" class="heart-outline">
+        <path d="M50 85 C20 60 2 40 2 22 C2 8 13 -1 26 3 C36 6 44 15 50 25 C56 15 64 6 74 3 C87 -1 98 8 98 22 C98 40 80 60 50 85 Z"/>
+      </svg>
+      <svg viewBox="0 0 100 90" class="heart-fill" id="heartFill">
+        <defs>
+          <linearGradient id="heartGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#B5502E"/>
+            <stop offset="100%" stop-color="#D9A441"/>
+          </linearGradient>
+          <clipPath id="heartClip">
+            <path d="M50 85 C20 60 2 40 2 22 C2 8 13 -1 26 3 C36 6 44 15 50 25 C56 15 64 6 74 3 C87 -1 98 8 98 22 C98 40 80 60 50 85 Z"/>
+          </clipPath>
+        </defs>
+        <g clip-path="url(#heartClip)">
+          <rect id="heartRect" x="0" y="90" width="100" height="90" fill="url(#heartGrad)"/>
+        </g>
+      </svg>
+    </div>
+    <p class="loader-pct" id="loaderPct">0%</p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main id="main" class="hidden">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow reveal-el">Espero que disfrutes de esta escapada</p>
+      <h1 class="reveal-el">Te quiero</h1>
+      <p class="hero-date reveal-el">Felices 21 años cariño</p>
+      <div class="carousel-wrap reveal-el">
+        <div class="carousel" id="carousel">
+          <div class="polaroid" style="--r:-4deg;">
+            <img src="images/photo1.jpg" alt="Marsella">
+            <span class="pin"></span>
+            <span class="zoom-hint">tocar para ampliar</span>
+          </div>
+          <div class="polaroid" style="--r:3deg;">
+            <img src="images/photo2.jpg" alt="Roma">
+            <span class="pin"></span>
+            <span class="zoom-hint">tocar para ampliar</span>
+          </div>
+          <div class="polaroid" style="--r:-3deg;">
+            <img src="images/photo3.jpg" alt="Feria">
+            <span class="pin"></span>
+            <span class="zoom-hint">tocar para ampliar</span>
+          </div>
+          <div class="polaroid" style="--r:4deg;">
+            <img src="images/photo4.jpg" alt="Flamenca">
+            <span class="pin"></span>
+            <span class="zoom-hint">tocar para ampliar</span>
+          </div>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+
+      <p class="swipe-hint reveal-el">desliza las fotos &rarr;</p>
+    </section>
+
+    <!-- ENVELOPE -->
+    <section class="envelope-section">
+      <p class="squiggle reveal-el">&#8767;</p>
+      <div class="envelope-wrap reveal-el" id="envelopeWrap">
+        <div class="envelope" id="envelope">
+          <div class="envelope-back"></div>
+          <div class="envelope-letter-peek"></div>
+          <div class="envelope-flap"></div>
+          <button class="seal-btn" id="sealBtn" aria-label="Abrir sobre">Descúbrelo</button>
+        </div>
+      </div>
+      <p class="envelope-hint reveal-el" id="envelopeHint">toca el sello para abrir</p>
+    </section>
+
+    <!-- LETTER (revealed) -->
+    <section class="letter-section hidden" id="letterSection">
+      <div class="letter-card" id="letterCard">
+        <p class="letter-text reveal-el">Sé que tu cumpleaños ya pasó hace un par de meses, pero hay regalos que no caben en un solo día.</p>
+        <p class="letter-text reveal-el">Este año has cumplido 21, y quise guardarme algo para dártelo con calma, sin prisa, en la fecha que yo eligiera.</p>
+        <p class="letter-text reveal-el">Córdoba, Granada, Madrid, Málaga, Florencia, Roma, Génova, Marsella... cada viaje contigo se ha quedado grabado en algún sitio que no se borra.</p>
+        <p class="letter-text reveal-el">Así que hoy, con un poco de retraso pero con toda la ilusión del mundo, te tengo preparada una escapada.</p>
+        <p class="letter-signoff reveal-el">Feliz cumpleaños atrasado, mi vida.</p>
+      </div>
+    </section>
+
+    <!-- JOURNEY MAP -->
+    <section class="journey-section hidden" id="journeySection">
+      <p class="eyebrow reveal-el">Un poco de todo lo que hemos vivido</p>
+      <h2 class="reveal-el">Nuestro mapa</h2>
+      <div class="journey-line">
+        <div class="journey-stop reveal-el"><span class="journey-dot"></span><span class="journey-city">Córdoba</span></div>
+        <div class="journey-stop reveal-el"><span class="journey-dot"></span><span class="journey-city">Granada</span></div>
+        <div class="journey-stop reveal-el"><span class="journey-dot"></span><span class="journey-city">Madrid</span></div>
+        <div class="journey-stop reveal-el"><span class="journey-dot"></span><span class="journey-city">Málaga</span></div>
+        <div class="journey-stop reveal-el"><span class="journey-dot"></span><span class="journey-city">Florencia</span></div>
+        <div class="journey-stop reveal-el"><span class="journey-dot"></span><span class="journey-city">Roma</span></div>
+        <div class="journey-stop reveal-el"><span class="journey-dot"></span><span class="journey-city">Génova</span></div>
+        <div class="journey-stop reveal-el"><span class="journey-dot"></span><span class="journey-city">Marsella</span></div>
+        <div class="journey-stop reveal-el journey-next"><span class="journey-dot journey-dot-next"></span><span class="journey-city">Próximo destino: Ronda.<br>Sigue bajando&hellip;</span></div>
+      </div>
+    </section>
+
+    <!-- CLOSING GALLERY -->
+    <section class="closing-gallery hidden" id="closingGallery">
+      <div class="polaroid solo" style="--r:-2deg;">
+        <img src="images/photo5.jpg" alt="Semana Santa">
+        <span class="pin"></span>
+        <span class="zoom-hint">tocar para ampliar</span>
+      </div>
+      <div class="polaroid solo" style="--r:2deg;">
+        <img src="images/photo6.jpg" alt="Ronda">
+        <span class="pin"></span>
+        <span class="zoom-hint">tocar para ampliar</span>
+      </div>
+    </section>
+
+    <!-- REASON CARDS -->
+    <section class="reasons-section hidden" id="reasonsSection">
+      <p class="eyebrow reveal-el">Por si hacía falta recordarlo</p>
+      <h2 class="reveal-el">Algunas razones</h2>
+      <p class="reasons-hint reveal-el">toca cada tarjeta</p>
+      <div class="reasons-grid">
+        <button class="reason-card reveal-el" type="button">
+          <span class="reason-face reason-front">♥</span>
+          <span class="reason-face reason-back">Por nuestras risas sin sentido.</span>
+        </button>
+        <button class="reason-card reveal-el" type="button">
+          <span class="reason-face reason-front">✦</span>
+          <span class="reason-face reason-back">Por hacer que cualquier plan sea mejor contigo.</span>
+        </button>
+        <button class="reason-card reveal-el" type="button">
+          <span class="reason-face reason-front">❀</span>
+          <span class="reason-face reason-back">Por aguantarme en los días difíciles.</span>
+        </button>
+        <button class="reason-card reveal-el" type="button">
+          <span class="reason-face reason-front">♥</span>
+          <span class="reason-face reason-back">Por cada viaje que hemos compartido.</span>
+        </button>
+        <button class="reason-card reveal-el" type="button">
+          <span class="reason-face reason-front">✦</span>
+          <span class="reason-face reason-back">Por ser mi persona favorita para no hacer nada.</span>
+        </button>
+        <button class="reason-card reveal-el" type="button">
+          <span class="reason-face reason-front">❀</span>
+          <span class="reason-face reason-back">Por estos 21 años tuyos que quiero seguir celebrando.</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- REVEAL -->
+    <section class="reveal-section hidden" id="revealSection">
+      <canvas class="stars-canvas" id="starsCanvas" aria-hidden="true"></canvas>
+
+      <div class="scratch-wrap" id="scratchWrap">
+        <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
+        <div class="reveal-content" id="revealContent">
+          <svg class="reveal-icon" viewBox="0 0 120 90" width="90">
+            <path d="M5 80 L35 30 L55 60 L75 20 L115 80 Z" fill="none" stroke="#B5502E" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="90" cy="65" r="16" fill="none" stroke="#D9A441" stroke-width="3"/>
+          </svg>
+          <p class="eyebrow">10 - 11 de Septiembre</p>
+          <h2>Nos vamos a Ronda</h2>
+          <p class="reveal-text">
+            Dónde nos alojamos es la siguiente sorpresa, así que de eso no
+            te digo nada todavía. Pronto lo descubrirás.<br><br>
+            De las comidas me encargo yo. Del resto también. Tú solo tienes que
+            venir con ganas de dejarte sorprender.
+          </p>
+          <p class="reveal-final">Nos vemos en Ronda ✨</p>
+        </div>
+      </div>
+      <p class="scratch-hint" id="scratchHint">rasca la tarjeta para descubrir el destino 🪙</p>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Foto anterior">&larr;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Foto siguiente">&rarr;</button>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>

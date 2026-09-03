@@ -173,10 +173,16 @@ setupSequentialReveal('.reasons-section .reveal-el', { threshold:0.15, rootMargi
   const dots = dotsWrap.querySelectorAll('span');
 
   function updateDots(){
-    const scrollLeft = carousel.scrollLeft;
-    const width = items[0].getBoundingClientRect().width + 22; // gap
-    const idx = Math.round(scrollLeft / width);
-    dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+    const carouselRect = carousel.getBoundingClientRect();
+    const center = carouselRect.left + carouselRect.width / 2;
+    let closest = 0;
+    let minDist = Infinity;
+    items.forEach((item, i) => {
+      const r = item.getBoundingClientRect();
+      const dist = Math.abs((r.left + r.width/2) - center);
+      if(dist < minDist){ minDist = dist; closest = i; }
+    });
+    dots.forEach((d,i) => d.classList.toggle('active', i === closest));
   }
   carousel.addEventListener('scroll', () => {
     window.requestAnimationFrame(updateDots);
@@ -255,7 +261,8 @@ setupSequentialReveal('.reasons-section .reveal-el', { threshold:0.15, rootMargi
   }
 
   document.addEventListener('click', (e) => {
-    const img = e.target.closest('.polaroid img');
+    const card = e.target.closest('.polaroid');
+    const img = card && card.querySelector('img');
     if(img){
       refreshPhotos();
       open(photos.indexOf(img));

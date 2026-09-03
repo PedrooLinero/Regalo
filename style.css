@@ -195,8 +195,8 @@ h1, h2{
   gap:22px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
-  padding:10px 30px 18px;
-  margin:0 -28px;
+  padding:10px 30px 40px;
+  margin:0 -28px -22px;
   -ms-overflow-style:none;
   scrollbar-width:none;
 }

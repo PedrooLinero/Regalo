@@ -72,7 +72,9 @@ html,body{
 /* ---------- START GATE ---------- */
 .start-gate{
   position:fixed;
-  inset:0;
+  top:0; left:0; right:0;
+  height:100vh;
+  height:100dvh;
   background:var(--cream);
   z-index:110;
   display:flex;
@@ -80,8 +82,9 @@ html,body{
   align-items:center;
   justify-content:center;
   gap:26px;
-  padding:0 30px;
+  padding:24px 30px;
   text-align:center;
+  overflow-y:auto;
   transition:opacity .5s ease, visibility .5s ease;
 }
 .start-gate.fade-out{ opacity:0; visibility:hidden; pointer-events:none; }
@@ -106,7 +109,9 @@ html,body{
 /* ---------- LOADER ---------- */
 .loader{
   position:fixed;
-  inset:0;
+  top:0; left:0; right:0;
+  height:100vh;
+  height:100dvh;
   background:var(--cream);
   display:flex;
   flex-direction:column;
@@ -114,6 +119,8 @@ html,body{
   justify-content:center;
   gap:18px;
   z-index:100;
+  padding:24px 20px;
+  overflow-y:auto;
   transition:opacity .7s ease, visibility .7s ease;
 }
 .loader.fade-out{ opacity:0; visibility:hidden; }

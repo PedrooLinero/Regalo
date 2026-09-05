@@ -638,6 +638,7 @@ h1, h2{
 .lightbox.open .lightbox-img{ transform:scale(1); opacity:1; }
 .lightbox-close, .lightbox-nav{
   position:absolute;
+  z-index:5;
   background:rgba(246,239,228,.12);
   border:1px solid rgba(246,239,228,.3);
   color:var(--cream);
